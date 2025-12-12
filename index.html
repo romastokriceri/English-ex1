@@ -3,575 +3,308 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Writing Practice - Variant 1</title>
+    <title>English Writing Practice – Variant 1</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin:0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
             padding: 20px;
             min-height: 100vh;
         }
-
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            background: white;
-            border-radius: 12px;
+            background: #fff;
+            border-radius: 15px;
             padding: 30px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
-
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #2196f3;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #2196f3;
         }
-
-        h1 {
-            color: #2196f3;
-            font-size: 32px;
-            margin-bottom: 5px;
-        }
-
-        .variant {
-            color: #666;
-            font-size: 16px;
-        }
-
-        .reset-btn {
-            background: #757575;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: background 0.3s;
-        }
-
-        .reset-btn:hover {
-            background: #616161;
-        }
-
+        h1 { color: #2196f3; font-size: 34px; }
+        .score { font-size: 24px; font-weight: bold; color: #4caf50; }
         .exercise {
+            background: #f8fdff;
+            padding: 25px;
+            border-radius: 12px;
             margin-bottom: 30px;
-            padding: 20px;
-            border-radius: 10px;
+            border: 1px solid #ddd;
         }
-
-        .exercise-1 { background: #e3f2fd; }
-        .exercise-2 { background: #e8f5e9; }
-        .exercise-3 { background: #f3e5f5; }
-        .exercise-4 { background: #fff3e0; }
-
-        .exercise-title {
-            font-size: 22px;
+        .ex-title {
+            font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
+            color: #333;
             display: flex;
-            align-items: center;
-            gap: 10px;
+            align-items:center;
+            gap: 12px;
         }
-
-        .exercise-number {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
+        .num {
+            width: 40px;
+            height: 40px;
+            background: #2196f3;
             color: white;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 20px;
             font-weight: bold;
         }
-
-        .ex1-num { background: #2196f3; }
-        .ex2-num { background: #4caf50; }
-        .ex3-num { background: #9c27b0; }
-        .ex4-num { background: #ff9800; }
-
-        .words-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .word-item {
-            display: flex;
-            align-items: center;
-            font-size: 18px;
-            font-weight: 600;
-        }
-
         .letter-input {
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             text-align: center;
-            border: 2px solid #2196f3;
-            border-radius: 6px;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
-            margin: 0 2px;
+            border: 2px solid #2196f3;
+            border-radius: 8px;
+            margin: 0 4px;
             text-transform: lowercase;
         }
-
-        .letter-input:focus {
-            outline: none;
-            border-color: #1976d2;
-            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
-        }
-
-        .letter-input.correct {
-            border-color: #4caf50;
-            background: #e8f5e9;
-        }
-
-        .letter-input.incorrect {
-            border-color: #f44336;
-            background: #ffebee;
-        }
-
-        .table-box {
-            background: white;
-            border: 2px solid #4caf50;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        td {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        td:first-child {
-            font-weight: bold;
-            width: 30%;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        .text-input {
+        .letter-input.correct { border-color: #4caf50; background: #e8f5e9; }
+        .letter-input.incorrect { border-color: #f44336; background: #ffebee; }
+        .text-in {
             width: 100%;
             padding: 10px;
-            border: 2px solid #4caf50;
+            border: 2px solid #999;
             border-radius: 6px;
-            font-size: 16px;
-            margin-top: 5px;
+            font-size: 17px;
         }
-
-        .text-input:focus {
-            outline: none;
-            border-color: #388e3c;
-        }
-
-        .sentence-line {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .note-box {
-            background: white;
-            border: 2px solid #9c27b0;
-            border-radius: 8px;
+        .text-in.correct { border-color: #4caf50; background: #e8f5e9; }
+        .text-in.incorrect { border-color: #f44336; background: #ffebee; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        td { padding: 12px; border-bottom: 1px solid #ddd; }
+        td:first-child { font-weight: bold; width: 30%; }
+        .note {
+            background: #f9f9ff;
             padding: 20px;
-            line-height: 1.8;
-        }
-
-        .note-input {
-            border: none;
-            border-bottom: 2px solid #9c27b0;
-            padding: 2px 8px;
-            font-size: 16px;
-            width: 120px;
-        }
-
-        .note-input:focus {
-            outline: none;
-            border-bottom-color: #7b1fa2;
-        }
-
-        .word-table {
-            background: white;
-            border: 2px solid #ff9800;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-
-        .word-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            text-align: center;
-        }
-
-        .word-column p {
-            padding: 5px;
-        }
-
-        .word-column p:first-child {
-            font-weight: bold;
-            color: #ff9800;
-        }
-
-        .picture-container {
-            margin-bottom: 20px;
-        }
-
-        .picture-container img {
-            width: 100%;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-        }
-
-        .answer-section {
-            margin-top: 20px;
-        }
-
-        .answer-item {
-            margin-bottom: 15px;
-        }
-
-        .answer-item p {
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        .check-btn {
-            display: block;
-            margin: 30px auto 0;
-            background: #2196f3;
-            color: white;
-            border: none;
-            padding: 15px 40px;
             border-radius: 10px;
+            line-height: 2.2;
+            font-size: 18px;
+        }
+        .gap { display: inline-block; width: 130px; border-bottom: 3px solid #9c27b0; margin: 0 8px; text-align: center; font-size: 18px; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 17px;
+        }
+        .grid div { background: #fff; padding: 10px; border-radius: 8px; border: 2px solid #ff9800; }
+        .grid div:first-child { font-weight: bold; background: #fff3e0; }
+        .check-btn, .reset-btn {
+            padding: 15px 35px;
             font-size: 18px;
             font-weight: bold;
+            border: none;
+            border-radius: 10px;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background 0.3s;
+            margin: 20px auto;
+            display: block;
         }
-
-        .check-btn:hover {
-            background: #1976d2;
+        .check-btn { background: #2196f3; color: white; }
+        .reset-btn { background: #757575; color: white; }
+        .result {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 30px 0;
+            padding: 20px;
+            border-radius: 12px;
+            display: none;
         }
-
-        @media (max-width: 768px) {
-            .words-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .word-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .header {
-                flex-direction: column;
-                gap: 15px;
-            }
-        }
+        .result.good { background: #e8f5e9; color: #2e7d32; border: 3px solid #4caf50; }
+        .result.bad { background: #ffebee; color: #c62828; border: 3px solid #f44336; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div>
-                <h1>English Writing Practice</h1>
-                <p class="variant">Variant 1</p>
-            </div>
-            <button class="reset-btn" onclick="resetAll()">
-                ↻ Reset
-            </button>
+<div class="container">
+    <div class="header">
+        <div>
+            <h1>English Writing Practice</h1>
+            <p style="color:#666;font-size:18px;">Variant 1</p>
         </div>
-
-        <!-- Exercise 1 -->
-        <div class="exercise exercise-1">
-            <div class="exercise-title">
-                <span class="exercise-number ex1-num">1</span>
-                <span>Write the missing letters</span>
-            </div>
-            <div class="words-grid">
-                <div>
-                    <div class="word-item">
-                        <span>1) New Y</span>
-                        <input type="text" maxlength="1" class="letter-input" data-answer="e" data-word="1" data-pos="0">
-                        <input type="text" maxlength="1" class="letter-input" data-answer="a" data-word="1" data-pos="1">
-                        <span>r</span>
-                    </div>
-                    <div class="word-item">
-                        <span>2) b</span>
-                        <input type="text" maxlength="1" class="letter-input" data-answer="i" data-word="2" data-pos="0">
-                        <input type="text" maxlength="1" class="letter-input" data-answer="r" data-word="2" data-pos="1">
-                        <span>thday</span>
-                    </div>
-                    <div class="word-item">
-                        <span>3) C</span>
-                        <input type="text" maxlength="1" class="letter-input" data-answer="h" data-word="3" data-pos="0">
-                        <input type="text" maxlength="1" class="letter-input" data-answer="r" data-word="3" data-pos="1">
-                        <span>istmas</span>
-                    </div>
-                    <div class="word-item">
-                        <span>4) E</span>
-                        <input type="text" maxlength="1" class="letter-input" data-answer="a" data-word="4" data-pos="0">
-                        <input type="text" maxlength="1" class="letter-input" data-answer="s" data-word="4" data-pos="1">
-                        <span>ter</span>
-                    </div>
-                    <div class="word-item">
-                        <span>5) fi</span>
-                        <input type="text" maxlength="1" class="letter-input" data-answer="r" data-word="5" data-pos="0">
-                        <input type="text" maxlength="1" class="letter-input" data-answer="e" data-word="5" data-pos="1">
-                        <span>place</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="word-item">
-                        <span>6) tradi</span>
-                        <input type="text" maxlength="1" class="letter-input" data-answer="t" data-word="6" data-pos="0">
-                        <input type="text" maxlength="1" class="letter-input" data-answer="i" data-word="6" data-pos="1">
-                        <span>on</span>
-                    </div>
-                    <div class="word-item">
-                        <span>7) sto</span>
-                        <input type="text" maxlength="1" class="letter-input" data-answer="c" data-word="7" data-pos="0">
-                        <input type="text" maxlength="1" class="letter-input" data-answer="k" data-word="7" data-pos="1">
-                        <span>ing</span>
-                    </div>
-                    <div class="word-item">
-                        <span>8) ni</span>
-                        <input type="text" maxlength="1" class="letter-input" data-answer="g" data-word="8" data-pos="0">
-                        <input type="text" maxlength="1" class="letter-input" data-answer="h" data-word="8" data-pos="1">
-                        <span>t</span>
-                    </div>
-                    <div class="word-item">
-                        <span>9) g</span>
-                        <input type="text" maxlength="1" class="letter-input" data-answer="u" data-word="9" data-pos="0">
-                        <input type="text" maxlength="1" class="letter-input" data-answer="e" data-word="9" data-pos="1">
-                        <span>sts</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Exercise 2 -->
-        <div class="exercise exercise-2">
-            <div class="exercise-title">
-                <span class="exercise-number ex2-num">2</span>
-                <span>Lucy's daily activities - Write about you</span>
-            </div>
-            
-            <div class="table-box">
-                <table>
-                    <tr>
-                        <td>Sunday</td>
-                        <td>walk in the park</td>
-                    </tr>
-                    <tr>
-                        <td>Monday</td>
-                        <td>do yoga</td>
-                    </tr>
-                    <tr>
-                        <td>Tuesday</td>
-                        <td>read English books</td>
-                    </tr>
-                    <tr>
-                        <td>Wednesday</td>
-                        <td>go swimming pool</td>
-                    </tr>
-                </table>
-            </div>
-
-            <div>
-                <p style="margin-bottom: 10px;">1) On Sundays Lucy <strong>walks in the park</strong>.</p>
-                <div class="sentence-line">
-                    <span>I usually</span>
-                    <input type="text" class="text-input" placeholder="write your Sunday activity" style="flex: 1;">
-                    <span>on Sundays.</span>
-                </div>
-
-                <p style="margin: 20px 0 10px 0;">2) On Mondays</p>
-                <input type="text" class="text-input" placeholder="write about Lucy's Monday">
-                <div class="sentence-line" style="margin-top: 10px;">
-                    <span>I</span>
-                    <input type="text" class="text-input" placeholder="write your Monday activity" style="flex: 1;">
-                </div>
-
-                <p style="margin: 20px 0 10px 0;">3) On</p>
-                <input type="text" class="text-input" placeholder="write about Tuesday">
-
-                <p style="margin: 20px 0 10px 0;">4)</p>
-                <input type="text" class="text-input" placeholder="write about Wednesday">
-            </div>
-        </div>
-
-        <!-- Exercise 3 -->
-        <div class="exercise exercise-3">
-            <div class="exercise-title">
-                <span class="exercise-number ex3-num">3</span>
-                <span>Fill in the missing words</span>
-            </div>
-            
-            <div class="note-box">
-                <p style="margin-bottom: 15px;">
-                    Mum, we <strong>are</strong> going on a picnic 
-                    <input type="text" class="note-input" placeholder="in">
-                    the morning. We've
-                </p>
-                <p style="margin-bottom: 15px;">
-                    <input type="text" class="note-input" placeholder="got">
-                    2 cartons of juice, 5 
-                    <input type="text" class="note-input" placeholder="bottles">
-                    of water and some fruit.
-                </p>
-                <p style="margin-bottom: 15px;">
-                    We also need 
-                    <input type="text" class="note-input" placeholder="some">
-                    sandwiches, but we 
-                    <input type="text" class="note-input" placeholder="have">
-                    not got
-                </p>
-                <p style="margin-bottom: 15px;">bread, cheese and tomatoes.</p>
-                <p style="margin-bottom: 10px;">
-                    <input type="text" class="note-input" placeholder="Can">
-                    you buy some, please?
-                </p>
-                <p style="font-weight: bold;">Lucy</p>
-            </div>
-        </div>
-
-        <!-- Exercise 4 -->
-        <div class="exercise exercise-4">
-            <div class="exercise-title">
-                <span class="exercise-number ex4-num">4</span>
-                <span>Write sentences using the words in the box</span>
-            </div>
-            
-            <div class="word-table">
-                <div class="word-grid">
-                    <div class="word-column">
-                        <p>Subject</p>
-                        <p>The children</p>
-                        <p>The boy</p>
-                    </div>
-                    <div class="word-column">
-                        <p>Verb</p>
-                        <p>to make</p>
-                        <p>to hang</p>
-                        <p>to give</p>
-                    </div>
-                    <div class="word-column">
-                        <p>Object</p>
-                        <p>decorations</p>
-                        <p>stockings</p>
-                        <p>flowers</p>
-                    </div>
-                    <div class="word-column">
-                        <p>Occasion</p>
-                        <p>New Year</p>
-                        <p>St Nicholas Day</p>
-                        <p>Mother's Day</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="picture-container">
-                <img src="img_1.jpg" alt="Exercise pictures">
-            </div>
-
-            <div class="answer-section">
-                <div class="answer-item">
-                    <p>1)</p>
-                    <input type="text" class="text-input" placeholder="Example: The children make decorations for New Year">
-                </div>
-                <div class="answer-item">
-                    <p>2)</p>
-                    <input type="text" class="text-input" placeholder="Write your sentence here">
-                </div>
-                <div class="answer-item">
-                    <p>3)</p>
-                    <input type="text" class="text-input" placeholder="Write your sentence here">
-                </div>
-            </div>
-        </div>
-
-        <button class="check-btn" onclick="checkAnswers()">Check Exercise 1</button>
+        <div class="score" id="score">0/10</div>
     </div>
 
-    <script>
-        let isChecked = false;
+    <!-- 1 Write the missing letters -->
+    <div class="exercise">
+        <div class="ex-title"><div class="num">1</div> Write the missing letters.</div>
+        <table>
+            <tr><td>1) New Y<input class="letter-input" data-ans="e"> <input class="letter-input" data-ans="a">r</td>
+                <td>6) tradi<input class="letter-input" data-ans="t"> <input class="letter-input" data-ans="i">on</td></tr>
+            <tr><td>2) b<input class="letter-input" data-ans="i"> <input class="letter-input" data-ans="r">thday</td>
+                <td>7) sto<input class="letter-input" data-ans="c"> <input class="letter-input" data-ans="k">ing</td></tr>
+            <tr><td>3) C<input class="letter-input" data-ans="h"> <input class="letter-input" data-ans="r">istmas</td>
+                <td>8) ni<input class="letter-input" data-ans="g"> <input class="letter-input" data-ans="h">t</td></tr>
+            <tr><td>4) E<input class="letter-input" data-ans="a"> <input class="letter-input" data-ans="s">ter</td>
+                <td>9) g<input class="letter-input" data-ans="u"> <input class="letter-input" data-ans="e">sts</td></tr>
+            <tr><td>5) fi<input class="letter-input" data-ans="r"> <input class="letter-input" data-ans="e">place</td><td></td></tr>
+        </table>
+    </div>
 
-        // Auto-focus next input
-        document.querySelectorAll('.letter-input').forEach((input, index, inputs) => {
-            input.addEventListener('input', function() {
-                this.value = this.value.toLowerCase();
-                if (this.value && index < inputs.length - 1) {
-                    inputs[index + 1].focus();
-                }
-            });
+    <!-- 2 Lucy’s day + write about you -->
+    <div class="exercise">
+        <div class="ex-title"><div class="num">2</div> Use the table to make up sentences about Lucy’s day. Write similar sentences about you.</div>
+        <table>
+            <tr><td>Sunday</td><td>walk in the park</td></tr>
+            <tr><td>Monday</td><td>do yoga</td></tr>
+            <tr><td>Tuesday</td><td>read English books</td></tr>
+            <tr><td>Wednesday</td><td>go/swimming pool</td></tr>
+        </table>
 
-            input.addEventListener('keydown', function(e) {
-                if (e.key === 'Backspace' && !this.value && index > 0) {
-                    inputs[index - 1].focus();
-                }
-            });
+        <p style="margin-top:25px;"><strong>Lucy</strong></p>
+        <p>1) On Sundays Lucy <u>walks in the park</u>.</p>
+        <p>2) On Mondays <input type="text" class="text-in" data-ans="lucy does yoga"></p>
+        <p>3) On <input type="text" class="text-in" data-ans="tuesdays lucy reads english books"></p>
+        <p>4) On Wednesdays <input type="text" class="text-in" data-ans="lucy goes to the swimming pool"></p>
+
+        <p style="margin-top:30px;"><strong>You</strong></p>
+        <p>1) I usually <input type="text" class="text-in" placeholder="your Sunday activity"></p>
+        <p>2) I <input type="text" class="text-in" placeholder="your Monday activity"></p>
+        <p>3) On Tuesdays I <input type="text" class="text-in" placeholder="your Tuesday activity"></p>
+        <p>4) <input type="text" class="text-in" placeholder="your Wednesday activity"></p>
+    </div>
+
+    <!-- 3 Fill in the note -->
+    <div class="exercise">
+        <div class="ex-title"><div class="num">3</div> Read the note and write down missing words.</div>
+        <div class="note">
+            Mum, we <strong>are</strong> going on a picnic <input type="text" class="text-in" style="width:150px" data-ans="in"> the morning. We’ve<br>
+            <input type="text" class="text-in" style="width:100px" data-ans="got"> 2 cartons of juice, 5 <input type="text" class="text-in" style="width:120px" data-ans="bottles"> of water and some fruit.<br>
+            We also need <input type="text" class="text-in" style="width:100px" data-ans="some"> sandwiches, but we <input type="text" class="text-in" style="width:130px" data-ans="have"> not got<br>
+            bread, cheese and tomatoes.<br>
+            <input type="text" class="text-in" style="width:100px" data-ans="can"> you buy some, please?<br><br>
+            Lucy
+        </div>
+    </div>
+
+    <!-- 4 Look and write -->
+    <div class="exercise">
+        <div class="ex-title"><div class="num">4</div> Look and write. Use the words in the box.</div>
+        <div class="grid">
+            <div>Subject<br>The children<br>The boy</div>
+            <div>Verb<br>to make<br>to hang<br>to give</div>
+            <div>Object<br>decorations<br>stockings<br>flowers</div>
+            <div>Occasion<br>New Year<br>St Nicholas Day<br>Mother’s Day</div>
+        </div>
+
+        <p style="margin:25px 0 15px;"><strong>Write 3 sentences about the pictures:</strong></p>
+        <p>1) <input type="text" class="text-in" data-ans="the children make decorations for new year"></p>
+        <p>2) <input type="text" class="text-in" data-ans="the children hang stockings for st nicholas day"></p>
+        <p>3) <input type="text" class="text-in" data-ans="the boy gives flowers for mothers day"></p>
+    </div>
+
+    <button class="check-btn" onclick="checkAll()">Перевірити всі завдання</button>
+    <button class="reset-btn" onclick="resetAll()">Очистити все</button>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+const answers = {
+    letter: ["e","a","i","r","h","r","a","s","r","e","t","i","c","k","g","h","u","e"],
+    ex2_lucy: ["lucy does yoga", "tuesdays lucy reads english books", "lucy goes to the swimming pool"],
+    ex3: ["in", "got", "bottles", "some", "have", "can"],
+    ex4: ["the children make decorations for new year", "the children hang stockings for st nicholas day", "the boy gives flowers for mothers day"]
+};
+
+let totalPoints = 0;
+const maxPoints = 9 + 3 + 6 + 3; // 9×2 letters + 3 Lucy + 6 note + 3 sentences
+
+function checkAll() {
+    totalPoints = 0;
+    document.querySelectorAll('.letter-input').forEach((el, i) => {
+        const correct = answers.letter[i];
+        if (el.value.trim().toLowerCase() === correct) ? (el.classList.add('correct'), el.classList.remove('incorrect'), totalPoints++) : el.classList.add('incorrect'), el.classList.remove('correct');
+    });
+
+    // Exercise 2 – Lucy
+    let lucyCorrect = 0;
+    document.querySelectorAll('.text-in[data-ans^="lucy"], .text-in[data-ans="tuesdays lucy reads english books"], .text-in[data-ans="lucy goes to the swimming pool"]').forEach((el, i) => {
+        const user = el.value.trim().toLowerCase();
+        const corr = answers.ex2_lucy[i];
+        if (user.includes(corr) || corr.includes(user)) {
+            el.classList.add('correct');
+            el.classList.remove('incorrect');
+            lucyCorrect++;
+            totalPoints++;
+        } else {
+            el.classList.add('incorrect');
+            el.classList.remove('correct');
+        }
+    });
+
+    // Exercise 3
+    document.querySelectorAll('.note .text-in').forEach((el, i) => {
+        const user = el.value.trim().toLowerCase();
+        const corr = answers.ex3[i];
+        if (user === corr) {
+            el.classList.add('correct');
+            el.classList.remove('incorrect');
+            totalPoints++;
+        } else {
+            el.classList.add('incorrect');
+            el.classList.remove('correct');
+        }
+    });
+
+    // Exercise 4
+    document.querySelectorAll('.exercise:last-of-type .text-in').forEach((el, i) => {
+        const user = el.value.trim().toLowerCase();
+        const corr = answers.ex4[i];
+        // приймаємо кілька варіантів формулювань
+        if (user.includes('children') && user.includes('make') && user.includes('decorations') && user.includes('new year') && i===0 ||
+            user.includes('children') && user.includes('hang') && user.includes('stockings') && (user.includes('st nicholas') || user.includes('saint nicholas')) && i===1 ||
+            user.includes('boy') && user.includes('give') && user.includes('flowers') && user.includes('mother') && i===2) {
+            el.classList.add('correct');
+            el.classList.remove('incorrect');
+            totalPoints++;
+        } else {
+            el.classList.add('incorrect');
+            el.classList.remove('correct');
+        }
+    });
+
+    const percent = Math.round(totalPoints / maxPoints * 10);
+    const resultDiv = document.getElementById('result');
+    resultDiv.style.display = 'block';
+    resultDiv.textContent = `Ваша оцінка: \( {percent}/10 балів ( \){totalPoints} з ${maxPoints} правильних відповідей)`;
+    resultDiv.className = 'result ' + (percent >= 7 ? 'good' : 'bad');
+    document.getElementById('score').textContent = `${percent}/10`;
+}
+
+function resetAll() {
+    if (confirm('Скинути всі відповіді?')) {
+        document.querySelectorAll('input').forEach(i => {
+            i.value = '';
+            i.classList.remove('correct', 'incorrect');
         });
+        document.getElementById('result').style.display = 'none';
+        document.getElementById('score').textContent = '0/10';
+        totalPoints = 0;
+    }
+}
 
-        function checkAnswers() {
-            isChecked = !isChecked;
-            const btn = document.querySelector('.check-btn');
-            
-            if (isChecked) {
-                btn.textContent = 'Hide Results';
-                document.querySelectorAll('.letter-input').forEach(input => {
-                    const answer = input.dataset.answer;
-                    const value = input.value.toLowerCase();
-                    
-                    if (value === answer) {
-                        input.classList.add('correct');
-                        input.classList.remove('incorrect');
-                    } else if (value) {
-                        input.classList.add('incorrect');
-                        input.classList.remove('correct');
-                    }
-                });
-            } else {
-                btn.textContent = 'Check Exercise 1';
-                document.querySelectorAll('.letter-input').forEach(input => {
-                    input.classList.remove('correct', 'incorrect');
-                });
-            }
-        }
-
-        function resetAll() {
-            if (confirm('Are you sure you want to reset all answers?')) {
-                document.querySelectorAll('input[type="text"]').forEach(input => {
-                    input.value = '';
-                    input.classList.remove('correct', 'incorrect');
-                });
-                isChecked = false;
-                document.querySelector('.check-btn').textContent = 'Check Exercise 1';
-            }
-        }
-    </script>
+// Автофокус для букв
+document.querySelectorAll('.letter-input').forEach((inp, idx, arr) => {
+    inp.addEventListener('input', () => {
+        inp.value = inp.value.toLowerCase();
+        if (inp.value && idx < arr.length-1) arr[idx+1].focus();
+    });
+    inp.addEventListener('keydown', e => {
+        if (e.key === 'Backspace' && !inp.value && idx > 0) arr[idx-1].focus();
+    });
+});
+</script>
 </body>
 </html>
