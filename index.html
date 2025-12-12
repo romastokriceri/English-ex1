@@ -1,0 +1,455 @@
+import React, { useState } from 'react';
+import { Check, X, RefreshCw } from 'lucide-react';
+
+const EnglishWorksheet = () => {
+  const [answers, setAnswers] = useState({
+    // Exercise 1
+    word1: ['', ''],
+    word2: ['', ''],
+    word3: ['', ''],
+    word4: ['', ''],
+    word5: ['', ''],
+    word6: ['', ''],
+    word7: ['', ''],
+    word8: ['', ''],
+    word9: ['', ''],
+    // Exercise 2
+    sunday: '',
+    monday: '',
+    tuesday: '',
+    wednesday: '',
+    // Exercise 3
+    note1: '',
+    note2: '',
+    note3: '',
+    note4: '',
+    note5: '',
+    // Exercise 4
+    pic1: '',
+    pic2: '',
+    pic3: ''
+  });
+
+  const [showResults, setShowResults] = useState(false);
+
+  const correctAnswers = {
+    word1: ['e', 'a'],
+    word2: ['i', 'r'],
+    word3: ['h', 'r'],
+    word4: ['a', 's'],
+    word5: ['r', 'e'],
+    word6: ['t', 'i'],
+    word7: ['c', 'k'],
+    word8: ['g', 'h'],
+    word9: ['u', 'e']
+  };
+
+  const handleInputChange = (field, value, index = null) => {
+    if (index !== null) {
+      const newArray = [...answers[field]];
+      newArray[index] = value.toLowerCase();
+      setAnswers({ ...answers, [field]: newArray });
+    } else {
+      setAnswers({ ...answers, [field]: value });
+    }
+  };
+
+  const checkAnswer = (field, index = null) => {
+    if (!showResults) return null;
+    
+    if (index !== null) {
+      return answers[field][index] === correctAnswers[field][index];
+    }
+    return null;
+  };
+
+  const reset = () => {
+    setAnswers({
+      word1: ['', ''],
+      word2: ['', ''],
+      word3: ['', ''],
+      word4: ['', ''],
+      word5: ['', ''],
+      word6: ['', ''],
+      word7: ['', ''],
+      word8: ['', ''],
+      word9: ['', ''],
+      sunday: '',
+      monday: '',
+      tuesday: '',
+      wednesday: '',
+      note1: '',
+      note2: '',
+      note3: '',
+      note4: '',
+      note5: '',
+      pic1: '',
+      pic2: '',
+      pic3: ''
+    });
+    setShowResults(false);
+  };
+
+  const InputBox = ({ field, index, placeholder = '' }) => {
+    const isCorrect = checkAnswer(field, index);
+    return (
+      <input
+        type="text"
+        maxLength={1}
+        value={index !== null ? answers[field][index] : answers[field]}
+        onChange={(e) => handleInputChange(field, e.target.value, index)}
+        className={`w-8 h-8 text-center border-2 rounded mx-0.5 text-lg font-semibold
+          ${showResults 
+            ? isCorrect === true 
+              ? 'border-green-500 bg-green-50' 
+              : isCorrect === false 
+                ? 'border-red-500 bg-red-50'
+                : 'border-gray-300'
+            : 'border-blue-400 focus:border-blue-600 focus:outline-none'
+          }`}
+        placeholder={placeholder}
+      />
+    );
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg shadow-lg">
+      <div className="bg-white rounded-lg p-6 mb-4">
+        <div className="flex justify-between items-center mb-6">
+          <div>
+            <h1 className="text-3xl font-bold text-blue-600">English Writing Practice</h1>
+            <p className="text-gray-600">Variant 1</p>
+          </div>
+          <button
+            onClick={reset}
+            className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition"
+          >
+            <RefreshCw size={18} />
+            Reset
+          </button>
+        </div>
+
+        {/* Exercise 1 */}
+        <div className="mb-8 p-4 bg-blue-50 rounded-lg">
+          <h2 className="text-xl font-bold text-blue-700 mb-4 flex items-center gap-2">
+            <span className="bg-blue-600 text-white w-8 h-8 rounded flex items-center justify-center">1</span>
+            Write the missing letters
+          </h2>
+          
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-3">
+              <div className="flex items-center">
+                <span className="mr-2 font-semibold">1) New Y</span>
+                <InputBox field="word1" index={0} />
+                <InputBox field="word1" index={1} />
+                <span className="ml-1">r</span>
+              </div>
+              
+              <div className="flex items-center">
+                <span className="mr-2 font-semibold">2) b</span>
+                <InputBox field="word2" index={0} />
+                <InputBox field="word2" index={1} />
+                <span className="ml-1">thday</span>
+              </div>
+              
+              <div className="flex items-center">
+                <span className="mr-2 font-semibold">3) C</span>
+                <InputBox field="word3" index={0} />
+                <InputBox field="word3" index={1} />
+                <span className="ml-1">istmas</span>
+              </div>
+              
+              <div className="flex items-center">
+                <span className="mr-2 font-semibold">4) E</span>
+                <InputBox field="word4" index={0} />
+                <InputBox field="word4" index={1} />
+                <span className="ml-1">ter</span>
+              </div>
+              
+              <div className="flex items-center">
+                <span className="mr-2 font-semibold">5) fi</span>
+                <InputBox field="word5" index={0} />
+                <InputBox field="word5" index={1} />
+                <span className="ml-1">place</span>
+              </div>
+            </div>
+            
+            <div className="space-y-3">
+              <div className="flex items-center">
+                <span className="mr-2 font-semibold">6) tradi</span>
+                <InputBox field="word6" index={0} />
+                <InputBox field="word6" index={1} />
+                <span className="ml-1">on</span>
+              </div>
+              
+              <div className="flex items-center">
+                <span className="mr-2 font-semibold">7) sto</span>
+                <InputBox field="word7" index={0} />
+                <InputBox field="word7" index={1} />
+                <span className="ml-1">ing</span>
+              </div>
+              
+              <div className="flex items-center">
+                <span className="mr-2 font-semibold">8) ni</span>
+                <InputBox field="word8" index={0} />
+                <InputBox field="word8" index={1} />
+                <span className="ml-1">t</span>
+              </div>
+              
+              <div className="flex items-center">
+                <span className="mr-2 font-semibold">9) g</span>
+                <InputBox field="word9" index={0} />
+                <InputBox field="word9" index={1} />
+                <span className="ml-1">sts</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Exercise 2 */}
+        <div className="mb-8 p-4 bg-green-50 rounded-lg">
+          <h2 className="text-xl font-bold text-green-700 mb-4 flex items-center gap-2">
+            <span className="bg-green-600 text-white w-8 h-8 rounded flex items-center justify-center">2</span>
+            Lucy's daily activities - Write about you
+          </h2>
+          
+          <div className="mb-4 p-3 bg-white rounded border-2 border-green-200">
+            <table className="w-full text-sm">
+              <tbody>
+                <tr className="border-b">
+                  <td className="py-2 font-semibold">Sunday</td>
+                  <td className="py-2">walk in the park</td>
+                </tr>
+                <tr className="border-b">
+                  <td className="py-2 font-semibold">Monday</td>
+                  <td className="py-2">do yoga</td>
+                </tr>
+                <tr className="border-b">
+                  <td className="py-2 font-semibold">Tuesday</td>
+                  <td className="py-2">read English books</td>
+                </tr>
+                <tr>
+                  <td className="py-2 font-semibold">Wednesday</td>
+                  <td className="py-2">go swimming pool</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <p className="mb-2">1) On Sundays Lucy <span className="font-semibold">walks in the park</span>.</p>
+              <div className="flex items-center gap-2">
+                <span>I usually</span>
+                <input
+                  type="text"
+                  value={answers.sunday}
+                  onChange={(e) => handleInputChange('sunday', e.target.value)}
+                  className="flex-1 px-3 py-2 border-2 border-green-300 rounded focus:border-green-500 focus:outline-none"
+                  placeholder="write your Sunday activity"
+                />
+                <span>on Sundays.</span>
+              </div>
+            </div>
+
+            <div>
+              <p className="mb-2">2) On Mondays</p>
+              <input
+                type="text"
+                value={answers.monday}
+                onChange={(e) => handleInputChange('monday', e.target.value)}
+                className="w-full px-3 py-2 border-2 border-green-300 rounded focus:border-green-500 focus:outline-none mb-2"
+                placeholder="write about Lucy's Monday"
+              />
+              <div className="flex items-center gap-2">
+                <span>I</span>
+                <input
+                  type="text"
+                  className="flex-1 px-3 py-2 border-2 border-green-300 rounded focus:border-green-500 focus:outline-none"
+                  placeholder="write your Monday activity"
+                />
+              </div>
+            </div>
+
+            <div>
+              <p className="mb-2">3) On</p>
+              <input
+                type="text"
+                value={answers.tuesday}
+                onChange={(e) => handleInputChange('tuesday', e.target.value)}
+                className="w-full px-3 py-2 border-2 border-green-300 rounded focus:border-green-500 focus:outline-none"
+                placeholder="write about Tuesday"
+              />
+            </div>
+
+            <div>
+              <p className="mb-2">4)</p>
+              <input
+                type="text"
+                value={answers.wednesday}
+                onChange={(e) => handleInputChange('wednesday', e.target.value)}
+                className="w-full px-3 py-2 border-2 border-green-300 rounded focus:border-green-500 focus:outline-none"
+                placeholder="write about Wednesday"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Exercise 3 */}
+        <div className="mb-8 p-4 bg-purple-50 rounded-lg">
+          <h2 className="text-xl font-bold text-purple-700 mb-4 flex items-center gap-2">
+            <span className="bg-purple-600 text-white w-8 h-8 rounded flex items-center justify-center">3</span>
+            Fill in the missing words
+          </h2>
+          
+          <div className="p-4 bg-white rounded border-2 border-purple-200">
+            <p className="mb-3">
+              Mum, we <span className="font-semibold">are</span> going on a picnic{' '}
+              <input
+                type="text"
+                value={answers.note1}
+                onChange={(e) => handleInputChange('note1', e.target.value)}
+                className="w-20 px-2 py-1 border-b-2 border-purple-300 focus:border-purple-500 focus:outline-none"
+              />{' '}
+              the morning. We've
+            </p>
+            <p className="mb-3">
+              <input
+                type="text"
+                value={answers.note2}
+                onChange={(e) => handleInputChange('note2', e.target.value)}
+                className="w-20 px-2 py-1 border-b-2 border-purple-300 focus:border-purple-500 focus:outline-none"
+              />{' '}
+              2 cartons of juice, 5{' '}
+              <input
+                type="text"
+                value={answers.note3}
+                onChange={(e) => handleInputChange('note3', e.target.value)}
+                className="w-24 px-2 py-1 border-b-2 border-purple-300 focus:border-purple-500 focus:outline-none"
+              />{' '}
+              of water and some fruit.
+            </p>
+            <p className="mb-3">
+              We also need{' '}
+              <input
+                type="text"
+                value={answers.note4}
+                onChange={(e) => handleInputChange('note4', e.target.value)}
+                className="w-20 px-2 py-1 border-b-2 border-purple-300 focus:border-purple-500 focus:outline-none"
+              />{' '}
+              sandwiches, but we{' '}
+              <input
+                type="text"
+                value={answers.note5}
+                onChange={(e) => handleInputChange('note5', e.target.value)}
+                className="w-24 px-2 py-1 border-b-2 border-purple-300 focus:border-purple-500 focus:outline-none"
+              />{' '}
+              not got
+            </p>
+            <p className="mb-3">bread, cheese and tomatoes.</p>
+            <p>
+              <input
+                type="text"
+                className="w-24 px-2 py-1 border-b-2 border-purple-300 focus:border-purple-500 focus:outline-none"
+              />{' '}
+              you buy some, please?
+            </p>
+            <p className="mt-2 font-semibold">Lucy</p>
+          </div>
+        </div>
+
+        {/* Exercise 4 */}
+        <div className="mb-6 p-4 bg-orange-50 rounded-lg">
+          <h2 className="text-xl font-bold text-orange-700 mb-4 flex items-center gap-2">
+            <span className="bg-orange-600 text-white w-8 h-8 rounded flex items-center justify-center">4</span>
+            Write sentences using the words in the box
+          </h2>
+          
+          <div className="mb-4 p-3 bg-white rounded border-2 border-orange-200">
+            <div className="grid grid-cols-4 gap-2 text-sm text-center">
+              <div>
+                <p className="font-semibold">Subject</p>
+                <p>The children</p>
+                <p>The boy</p>
+              </div>
+              <div>
+                <p className="font-semibold">Verb</p>
+                <p>to make</p>
+                <p>to hang</p>
+                <p>to give</p>
+              </div>
+              <div>
+                <p className="font-semibold">Object</p>
+                <p>decorations</p>
+                <p>stockings</p>
+                <p>flowers</p>
+              </div>
+              <div>
+                <p className="font-semibold">Occasion</p>
+                <p>New Year</p>
+                <p>St Nicholas Day</p>
+                <p>Mother's Day</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Pictures */}
+          <div className="mb-4">
+            <img 
+              src="img_1.jpg" 
+              alt="Exercise pictures" 
+              className="w-full rounded border-2 border-gray-300"
+            />
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <p className="mb-2 font-semibold">1)</p>
+              <input
+                type="text"
+                value={answers.pic1}
+                onChange={(e) => handleInputChange('pic1', e.target.value)}
+                className="w-full px-3 py-2 border-2 border-orange-300 rounded focus:border-orange-500 focus:outline-none"
+                placeholder="Example: The children make decorations for New Year"
+              />
+            </div>
+
+            <div>
+              <p className="mb-2 font-semibold">2)</p>
+              <input
+                type="text"
+                value={answers.pic2}
+                onChange={(e) => handleInputChange('pic2', e.target.value)}
+                className="w-full px-3 py-2 border-2 border-orange-300 rounded focus:border-orange-500 focus:outline-none"
+                placeholder="Write your sentence here"
+              />
+            </div>
+
+            <div>
+              <p className="mb-2 font-semibold">3)</p>
+              <input
+                type="text"
+                value={answers.pic3}
+                onChange={(e) => handleInputChange('pic3', e.target.value)}
+                className="w-full px-3 py-2 border-2 border-orange-300 rounded focus:border-orange-500 focus:outline-none"
+                placeholder="Write your sentence here"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Check Button */}
+        <div className="text-center">
+          <button
+            onClick={() => setShowResults(!showResults)}
+            className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold text-lg shadow-lg"
+          >
+            {showResults ? 'Hide Results' : 'Check Exercise 1'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default EnglishWorksheet;
